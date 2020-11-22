@@ -1,25 +1,35 @@
-import logo from './logo.svg';
+
 import './App.css';
+import {useState} from 'react'
+import Header from "./component/Header"
+import Search from "./component/Search"
+import Footer from "./component/Footer"
+import Sidebar from "./component/Sidebar"
+import Tracklist from "./component/Tracklist"
+import Tracks from "./component/Tracks"
+
+
+
 
 function App() {
+  const [value, setValue]= useState(null)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="page_wrapper">
+     <Header />
+     <Search />
+  
+     <div className="container-fluid content-wrap">
+     <div className="container">
+     <div className="content">
+     <Tracklist />
+     </div>
+     <Tracks />
+     </div>
+     </div>
+    <Footer />
     </div>
   );
 }
 
 export default App;
+

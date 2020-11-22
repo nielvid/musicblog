@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/*
+  <div className="Header">
+       <div className="top-header">
+           <nav className="menu">
+               <a href="#">Home</a>
+               <a href="#">Trending</a>
+               <a href="#">Latest</a>
+               <a href="#">Blog</a> </nav>
+       </div> 
+
+       <div className="title">
+       <h1>Nielvid Music Blog</h1>
+       </div>
+
+        </div>
+        */
