@@ -8,13 +8,9 @@ function Tracks(props){
     
 
     return (
-        <div>
+        <div className="container">
        
-            <div className="tracks">
-                <h3>Tracks</h3>
-                <div className="m-thumbs">
-                    <div className="top_charts">
-                    <div className="thumbs_holder">
+            
 
 
                     
@@ -24,33 +20,25 @@ function Tracks(props){
                         <div className="thumbs tracks_thumbs">
                         <img src={thumbs} alt="thumbs" />
                         <div>
-                        <h4><a href="#">{props.tracks}</a></h4>
-                        <h5><a href="#">{props.tracks}</a></h5>
-                            <h6>Artist: {props.tracks}</h6>
-                            <p><span>Rating: {props.tracks}</span> |<span>Track Id: {props.tracks}</span> </p>
+                        <h4><a href="#">{props.title}</a></h4>
+                        <h5><a href="#"> Track Id: {props.id}</a></h5>
+                            <h6>{props.artist}</h6>
                        
                         </div>
                         
                         </div>
 
                         <div className="user-action">
-                            <a href="#">Lyrics</a>
-                            <a href="#">Share</a>
+                           <button><a href="#">Lyrics</a></button> 
+                           <button><a href={props.share}>Share</a></button> 
                         </div>
 
                         </div>
+                        <hr  id="track-divider" />
                        {/*image-thumbnail ends*/}
 
                        
-                       
-                       </div>
-                      
-                        
-
-                    </div>
-                </div>
-               
-            </div>
+                    
             </div>
         
     )

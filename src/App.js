@@ -1,6 +1,7 @@
-
+import {useState, useEffect} from 'react'
+import axios from 'axios'
 import './App.css';
-import {useState} from 'react'
+
 import Header from "./component/Header"
 import Search from "./component/Search"
 import Footer from "./component/Footer"
@@ -11,8 +12,53 @@ import Tracks from "./component/Tracks"
 
 
 
+
+
+
 function App() {
-  const [value, setValue]= useState(null)
+  
+
+  const [tracks, setTracks] = useState(null)
+
+
+
+
+    useEffect(() => {
+        axios.get('https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/chart.tracks.get?chart_name=top&page=1&page_size=12&country=us&f_has_lyrics=1&apikey=fabf9d090014865874293c935b2d344b' )
+        .then((response)=>{
+
+            setTracks(response.data.message.body.track_list)
+            
+        }).catch(err=>console.log(err))
+
+        /*
+        fetch('https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/chart.tracks.get?chart_name=top&page=1&page_size=5&country=us&f_has_lyrics=1&apikey=fabf9d090014865874293c935b2d344b')
+        .then((res)=>{
+             let  data =   res.json()
+           return data
+        }).then((data)=>{
+            setTracks( data.message.body.track_list)
+        
+            
+        
+             /* data.map((item)=>{
+                  let ul = document.createElement('ul')
+                 let li = document.createElement('li')
+                    li.innerHTML = item.track.track_id
+                    ul.append(li)
+                    document.body.append(ul)
+              // return item.track.track_id
+               
+            })
+            document.body.append(response)
+            
+        }).catch(err=>console.log(err))*/
+
+
+
+
+    }, [])
+
   return (
     <div className="page_wrapper">
      <Header />
@@ -21,11 +67,52 @@ function App() {
      <div className="container-fluid content-wrap">
      <div className="container">
      <div className="content">
-     <Tracklist />
+  
+     <div className="main">
+                <h2>Music Chart</h2>
+                <div className="trending">
+                    <h3>Top 12 Tracks in the USA</h3>
+                    <div className="songs">
+
+
+     { tracks ? tracks.map((item)=>{ return (<Tracklist name = {item.track.track_name} artist={item.track.artist_name} rating={item.track.track_rating}  id={item.track.track_id}/> )  })
+                  : <><label for="file">Play above track while you wait!</label>
+                                  <progress id="file" value="32" max="100">53%</progress></>}
+     
+                                  </div>  
+                    <div className='btn-div'>
+                <button>Browse More</button>
+                </div>
+                </div>
+                </div>
+
+                </div>
+<hr />
+                <div>
+     <div className="tracks">
+                <h3>Track List</h3>
+                <div className="m-thumbs">
+                    <div className="top_charts">
+                    <div className="thumbs_holder">
+
+     { tracks && tracks.map((item)=>{ return <Tracks  title={item.track.track_name} id={item.track.track_id}  artist={item.track.artist_name} share={item.track.track_share_url} /> })
+                  }
+   
+                  </div>
+                      
+                        
+
+                      </div>
+                  </div>
+                 
+              </div>
+
      </div>
-     <Tracks />
+            </div>
      </div>
-     </div>
+     
+     
+    
     <Footer />
     </div>
   );

@@ -3,7 +3,7 @@ import {useState, useEffect} from "react"
 
 function Search(){
 
-    let [state, setValue] = useState("Chioma Jesus")
+    let [state, setValue] = useState("Search song by title")
 
    
 
@@ -17,7 +17,7 @@ function Search(){
     return(
         <div className="search container">
             <input type="text" name="search" value={state}  onInput={search}/>
-            <p>{state}</p>
+           
         <div>
 
        <audio controls>
