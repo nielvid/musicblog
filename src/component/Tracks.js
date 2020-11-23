@@ -1,10 +1,37 @@
 import thumbs from "../img/thumbs.jpg"
+import {useState, useEffect} from "react"
+import axios from 'axios'
+import code from "../package/config"
+import Lyrics from "./Lyrics"
+
 
 
 
 
 function Tracks(props){
 
+    const [lyrics, setLyrics] = useState(props.id)
+
+    useEffect(() => {
+        
+       
+        axios.get('https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id='+props.id+'&'+code.pass+code.code)
+        .then((response)=>{
+
+           console.log(response.data.message.body.lyrics.lyrics_body)
+
+            setLyrics(response.data.message.body.lyrics.lyrics_body)
+            
+        }).catch(err=>console.log(err))
+        
+    }, [])
+
+    
+   const handleClick = ()=>{
+        
+    return <Lyrics  lyrics ={lyrics}/>
+    
+   }
     
 
     return (
@@ -27,9 +54,12 @@ function Tracks(props){
                         </div>
                         
                         </div>
+                    
 
                         <div className="user-action">
-                           <button><a href="#">Lyrics</a></button> 
+                       
+                          {/* <button onClick={handleClick} >Show Lyrics</button>*/} 
+                            <Lyrics onClick={setLyrics}  lyrics = {lyrics}/>
                            <button><a href={props.share}>Share</a></button> 
                         </div>
 
@@ -44,3 +74,11 @@ function Tracks(props){
     )
 }
 export default Tracks;
+
+
+function Btn(clickAlert){
+
+    return(
+        <button  className="display_lyrics" >Lyrics</button> 
+    )
+}
