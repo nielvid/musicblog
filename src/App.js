@@ -5,9 +5,13 @@ import './App.css';
 import Header from "./component/Header"
 import Search from "./component/Search"
 import Footer from "./component/Footer"
+import code from "./package/config"
 import Sidebar from "./component/Sidebar"
 import Tracklist from "./component/Tracklist"
 import Tracks from "./component/Tracks"
+//import Lyrics from "./component/Lyrics"
+
+
 
 
 
@@ -20,11 +24,14 @@ function App() {
 
   const [tracks, setTracks] = useState(null)
 
+  
 
 
 
     useEffect(() => {
-        axios.get('https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/chart.tracks.get?chart_name=top&page=1&page_size=12&country=us&f_has_lyrics=1&apikey=fabf9d090014865874293c935b2d344b' )
+
+      
+        axios.get('https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/chart.tracks.get?chart_name=top&page=1&page_size=12&country=us&f_has_lyrics=1&'+code.pass+code.code)
         .then((response)=>{
 
             setTracks(response.data.message.body.track_list)
@@ -95,7 +102,7 @@ function App() {
                     <div className="top_charts">
                     <div className="thumbs_holder">
 
-     { tracks && tracks.map((item)=>{ return <Tracks  title={item.track.track_name} id={item.track.track_id}  artist={item.track.artist_name} share={item.track.track_share_url} /> })
+     { tracks && tracks.map((item)=>{ return <Tracks  title={item.track.track_name} id={item.track.track_id}  artist={item.track.artist_name} share={item.track.track_share_url}  /> })
                   }
    
                   </div>
@@ -110,9 +117,9 @@ function App() {
      </div>
             </div>
      </div>
-     
-     
     
+     
+  
     <Footer />
     </div>
   );
