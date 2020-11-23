@@ -31,10 +31,10 @@ function Lyrics(props){
             
                 <div>
     
-    <button  onClick= { displayBlock} id="myBtn">Display Lyrics</button>
+    <button  onClick= { displayBlock} id="myBtn" >Display Lyrics</button>
     
     {/* The Modal */}
-    <div id="myModal" class="modal">
+    <div id="myModal" className="modal">
     
       {/* Modal content*/}
       <div className="modal-content">

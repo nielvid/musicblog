@@ -11,27 +11,26 @@ import Lyrics from "./Lyrics"
 function Tracks(props){
 
     const [lyrics, setLyrics] = useState(props.id)
-
+       
+        
     useEffect(() => {
         
        
         axios.get('https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id='+props.id+'&'+code.pass+code.code)
         .then((response)=>{
 
-           console.log(response.data.message.body.lyrics.lyrics_body)
+           let text = response.data.message.body.lyrics.lyrics_body
+           
 
-            setLyrics(response.data.message.body.lyrics.lyrics_body)
+            setLyrics(text)
             
         }).catch(err=>console.log(err))
+        
         
     }, [])
 
     
-   const handleClick = ()=>{
-        
-    return <Lyrics  lyrics ={lyrics}/>
-    
-   }
+   
     
 
     return (
@@ -59,7 +58,7 @@ function Tracks(props){
                         <div className="user-action">
                        
                           {/* <button onClick={handleClick} >Show Lyrics</button>*/} 
-                            <Lyrics onClick={setLyrics}  lyrics = {lyrics}/>
+                            <Lyrics  lyrics = {lyrics}/>
                            <button><a href={props.share}>Share</a></button> 
                         </div>
 

@@ -3,7 +3,7 @@ import {useState, useEffect} from "react"
 
 function Search(){
 
-    let [state, setValue] = useState("Search song by title")
+    let [state, setValue] = useState('Search music')
 
    
 
@@ -21,8 +21,8 @@ function Search(){
         <div>
 
        <audio controls>
-  <source src="horse.ogg" type="audio/ogg" />
-  <source src="horse.mp3" type="audio/mpeg" />
+  <source src="https://www.jango.com/stations/312434100/tunein"  />
+  <source src="https://www.jango.com/stations/312434100/tunein"  />
 Your browser does not support the audio element.
 </audio>
         
