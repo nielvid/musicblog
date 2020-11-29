@@ -1,4 +1,10 @@
+
+
+
 function Lyrics(props){
+  
+
+
 
     // Get the modal
     var modal = document.getElementById("myModal");
@@ -11,12 +17,14 @@ function Lyrics(props){
     
     // When the user clicks the button, open the modal 
     const displayBlock = ()=>{
+      
+      
       modal.style.display = "block";
     }
     
     // When the user clicks on <span> (x), close the modal
     const noneDisplay = ()=>{
-      modal.style.display = "none";
+     modal.style.display = "none";
     }
     
     /* When the user clicks anywhere outside of the modal, close it
@@ -26,6 +34,7 @@ function Lyrics(props){
       }
     }
     */
+ 
     
         return (
             
@@ -34,13 +43,14 @@ function Lyrics(props){
     <button  onClick= { displayBlock} id="myBtn" >Display Lyrics</button>
     
     {/* The Modal */}
-    <div id="myModal" className="modal">
+    <div id="myModal" className={"modal"} >
     
       {/* Modal content*/}
       <div className="modal-content">
         <span onClick={noneDisplay} className="close">&times;</span>
         <h3>Tracks Lyrics</h3>
-        <div>{props.lyrics}</div>
+        <h2>{props.id}</h2>
+        <div >{props.lyrics}</div>
       </div>
     
     </div>

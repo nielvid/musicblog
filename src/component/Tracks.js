@@ -1,5 +1,5 @@
 import thumbs from "../img/thumbs.jpg"
-import {useState, useEffect} from "react"
+import { useState, useEffect, useRef} from "react"
 import axios from 'axios'
 import code from "../package/config"
 import Lyrics from "./Lyrics"
@@ -7,38 +7,37 @@ import Lyrics from "./Lyrics"
 
 
 
-
 function Tracks(props){
 
-    const [lyrics, setLyrics] = useState(props.id)
-       
-        
-    useEffect(() => {
-        
-       
-        axios.get('https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id='+props.id+'&'+code.pass+code.code)
+const [lyric, setLyric]= useState(null)
+let btn = useRef(null)
+
+
+
+   
+   
+
+
+   const handleClick = (id)=>{
+  
+    id = btn.current.value
+       axios.get('https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id='+id+'&'+code.pass+code.code)
         .then((response)=>{
 
-           let text = response.data.message.body.lyrics.lyrics_body
+          setLyric(response.data.message.body.lyrics.lyrics_body)
            
 
-            setLyrics(text)
-            
-        }).catch(err=>console.log(err))
         
-        
-    }, [])
-
-    
-   
-    
+   })
+   }
 
     return (
+
+      
+
+
         <div className="container">
        
-            
-
-
                     
                     {/*image-thumbnail start*/}
                         <div className="call_to_action">
@@ -46,8 +45,8 @@ function Tracks(props){
                         <div className="thumbs tracks_thumbs">
                         <img src={thumbs} alt="thumbs" />
                         <div>
-                        <h4><a href="#">{props.title}</a></h4>
-                        <h5><a href="#"> Track Id: {props.id}</a></h5>
+                        <h4><a href="/">{props.title}</a></h4>
+                        <h5 >{props.id}</h5>
                             <h6>{props.artist}</h6>
                        
                         </div>
@@ -56,17 +55,19 @@ function Tracks(props){
                     
 
                         <div className="user-action">
+                            
                        
-                          {/* <button onClick={handleClick} >Show Lyrics</button>*/} 
-                            <Lyrics  lyrics = {lyrics}/>
+                           <button onClick= {handleClick} ref={btn} value={props.id}>Show Lyrics</button>
+                    
                            <button><a href={props.share}>Share</a></button> 
                         </div>
 
                         </div>
+                        <div>{lyric}</div>
                         <hr  id="track-divider" />
                        {/*image-thumbnail ends*/}
 
-                       
+                    
                     
             </div>
         
@@ -75,9 +76,3 @@ function Tracks(props){
 export default Tracks;
 
 
-function Btn(clickAlert){
-
-    return(
-        <button  className="display_lyrics" >Lyrics</button> 
-    )
-}
