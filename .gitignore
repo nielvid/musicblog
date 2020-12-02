@@ -10,6 +10,10 @@
 
 # production
 /build
+<<<<<<< HEAD
+=======
+
+>>>>>>> new-dev
 
 # misc
 .DS_Store
