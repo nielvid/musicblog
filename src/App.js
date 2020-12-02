@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './App.css';
 
@@ -6,7 +6,6 @@ import Header from "./component/Header"
 import Search from "./component/Search"
 import Footer from "./component/Footer"
 import code from "./package/config"
-import Sidebar from "./component/Sidebar"
 import Tracklist from "./component/Tracklist"
 import Tracks from "./component/Tracks"
 //import Lyrics from "./component/Lyrics"
