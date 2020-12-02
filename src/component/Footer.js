@@ -13,7 +13,7 @@ function Footer() {
                         <input type="text" placeholder="Subject"></input>
                         <input type="text" placeholder="Mesage" ></input>
                     </form>
-                    <button type='submit'><a href="#">Submit</a></button>
+                    <button type='submit'><a href="/">Submit</a></button>
                 </div>
             </div>
             <div className="footer_links">
