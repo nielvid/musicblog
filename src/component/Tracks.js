@@ -65,7 +65,7 @@ function Tracks(props) {
                 <div className="user-action">
 
 
-                    <button {props.handleClick} ref={btn} id="myBtn" value={props.id}>Show Lyrics</button>
+                    <button onClick={handleClick} ref={btn} id="myBtn" value={props.id}>Show Lyrics</button>
 
 
 
