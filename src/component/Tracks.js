@@ -1,8 +1,9 @@
 import thumbs from "../img/thumbs.jpg"
-import { useState, useEffect, useRef } from "react"
+import { useState, useRef } from "react"
 import axios from 'axios'
 import code from "../package/config"
-import Lyrics from "./Lyrics"
+//import Lyrics from "./Lyrics"
+import styled from "styled-components"
 
 
 
@@ -10,11 +11,17 @@ import Lyrics from "./Lyrics"
 function Tracks(props) {
 
     const [lyric, setLyric] = useState(null)
+
+
+    const [Open, setOpen] = useState('false')
+
+
+
+    const displayBlock = () => {
+        setOpen(!Open)
+    }
+
     let btn = useRef(null)
-
-
-
-
 
 
 
@@ -26,7 +33,7 @@ function Tracks(props) {
 
                 setLyric(response.data.message.body.lyrics.lyrics_body)
 
-
+                setOpen(!Open)
 
             })
     }
@@ -53,12 +60,27 @@ function Tracks(props) {
                     </div>
 
                 </div>
-                <Lyrics lyrics={lyric} />
+                {/*<Lyrics lyrics={lyric} />*/}
 
                 <div className="user-action">
 
 
-                    <button onClick={handleClick} ref={btn} value={props.id}>Show Lyrics</button>
+                    <button {props.handleClick} ref={btn} id="myBtn" value={props.id}>Show Lyrics</button>
+
+
+
+                    {/* The Modal */}
+                    <Container className={Open ? 'modal' : 'show-modal'}  >
+
+                        {/* Modal content*/}
+                        <Lyrics className={`modal-content ${Open ? 'modal' : 'show-modal'} `} >
+                            <span className="close" onClick={displayBlock}>&times;</span>
+                            <h3>Tracks Lyrics</h3>
+                            <h2>Track Id: {props.id}</h2>
+                            <div >{lyric}</div>
+                        </Lyrics>
+
+                    </Container>
 
                     <button><a href={props.share}>Share</a></button>
                 </div>
@@ -78,3 +100,36 @@ function Tracks(props) {
 export default Tracks;
 
 
+
+const Container = styled.div`
+ 
+  position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    color: #000000;
+
+
+h3{
+    color: #000000;
+  }
+
+  .modal{
+     display: none; /* Hidden by default */
+  
+  }
+
+  .show-modal{
+    display: block;
+  }
+  `
+
+const Lyrics = styled.div`
+  width: 80%
+  `
