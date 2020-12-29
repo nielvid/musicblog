@@ -69,8 +69,8 @@ function App() {
                 <div className="songs">
 
 
-                  {tracks ? tracks.map((item) => { return (<Tracklist name={item.track.track_name} artist={item.track.artist_name} rating={item.track.track_rating} id={item.track.track_id} />) })
-                    : <><label for="file">Play above track while you wait!</label>
+                  {tracks ? tracks.map((item) => { return (<Tracklist key={item.track.track_id} name={item.track.track_name} artist={item.track.artist_name} rating={item.track.track_rating} id={item.track.track_id} />) })
+                    : <><label htmlFor="file">Play above track while you wait!</label>
                       <progress id="file" value="32" max="100">53%</progress></>}
 
                 </div>
@@ -89,7 +89,7 @@ function App() {
                 <div className="top_charts">
                   <div className="thumbs_holder">
 
-                    {tracks && tracks.map((item) => { return <Tracks title={item.track.track_name} id={item.track.track_id} artist={item.track.artist_name} share={item.track.track_share_url} /> })
+                    {tracks && tracks.map((item) => { return <Tracks  key={item.track.track_id} title={item.track.track_name} id={item.track.track_id} artist={item.track.artist_name} share={item.track.track_share_url} /> })
                     }
 
                   </div>

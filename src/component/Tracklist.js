@@ -10,7 +10,7 @@ function Tracklist(props) {
 
 
             {/*songs start here*/}
-            <div className="cards">
+            <div className="cards" >
                 <img src={img_3} alt="Artist" className="img_thumb" />
                 <h5><a href="/">{props.name}</a></h5>
                 <h6>Artist: {props.artist}</h6>
