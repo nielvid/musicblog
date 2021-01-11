@@ -1,8 +1,6 @@
 import thumbs from "../img/thumbs.jpg"
 import { useState, useRef } from "react"
 import axios from 'axios'
-import code from "../package/config"
-//import Lyrics from "./Lyrics"
 import styled from "styled-components"
 
 
@@ -28,7 +26,7 @@ function Tracks(props) {
     const handleClick = (id) => {
 
         id = btn.current.value
-        axios.get('https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=' + id + '&' + code.pass + code.code)
+        axios.get(`https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${id}&apikey=${process.env.REACT_APP_API_KEY}`)
             .then((response) => {
 
                 setLyric(response.data.message.body.lyrics.lyrics_body)
